@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   card: {
     top: 15,
     borderRadius: 15,
+    marginLeft: 10,
     backgroundColor: colors.white,
     marginBottom: 20,
     width: '45%',

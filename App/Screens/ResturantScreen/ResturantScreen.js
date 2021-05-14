@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, FlatList, Text, View} from 'react-native';
 import CardComponent from '../../Components/CardComponent';
 function ResturantScreen({navigation}) {
   const Res_data = [
@@ -22,19 +22,19 @@ function ResturantScreen({navigation}) {
       image: '',
     },
     {
-      id: 3,
+      id: 4,
       title: 'Pepes',
       subtitle: 'Product Name',
       image: '',
     },
     {
-      id: 3,
+      id: 5,
       title: 'Pepes',
       subtitle: 'Product Name',
       image: '',
     },
     {
-      id: 3,
+      id: 6,
       title: 'Pepes',
       subtitle: 'Product Name',
       image: '',
@@ -43,20 +43,18 @@ function ResturantScreen({navigation}) {
 
   return (
     <View>
-      <ScrollView>
-        <View style={{flexDirection: 'column', flex: 1}}>
-          {Res_data.map(e => (
-            <View flex={1 / 2}>
-              <CardComponent
-                title={e.title}
-                subTitle={e.subtitle}
-                image={e.image}
-                onPress={() => navigation.navigate('Items')}
-              />
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+      <FlatList
+        data={Res_data}
+        numColumns={2}
+        renderItem={({item}) => (
+          <CardComponent
+            title={item.title}
+            subTitle={item.subtitle}
+            image={item.image}
+            onPress={() => navigation.navigate('Items')}
+          />
+        )}
+      />
     </View>
   );
 }
