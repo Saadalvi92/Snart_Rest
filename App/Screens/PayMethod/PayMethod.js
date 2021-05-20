@@ -8,7 +8,6 @@ import {
   SubmitButton,
 } from '../../Components/forms';
 import AppText from '../../Components/AppText';
-import styles from './Style';
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
 
@@ -89,3 +88,6 @@ function PayMethod(props) {
 }
 
 export default PayMethod;
+const styles = StyleSheet.create({
+  container: {flex: 1, justifyContent: 'center'},
+});

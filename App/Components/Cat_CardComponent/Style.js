@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginBottom: 20,
     flexDirection: 'row',
+    overflow: 'hidden',
   },
   image: {
     marginTop: 10,
@@ -14,7 +15,10 @@ const styles = StyleSheet.create({
     height: 140,
     width: 100,
     borderRadius: 5,
-    backgroundColor: colors.black,
+    backgroundColor: colors.offWhite,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'stretch',
   },
   detailsContainer: {paddingLeft: 20, paddingTop: 20},
   title: {

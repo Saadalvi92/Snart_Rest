@@ -2,8 +2,10 @@
 import React from 'react';
 import * as yup from 'yup';
 import axios from 'axios';
+import FormData from 'form-data';
+
 //Import react-native
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
 
 //styles Import
 import styles from './Style';
@@ -11,37 +13,35 @@ import styles from './Style';
 import {AppForm, AppFormField, SubmitButton} from '../../Components/forms';
 import colors from '../../config/colors';
 import FbLogin from '../../Components/FbLoign';
-import {useEffect} from 'react';
-import {useState} from 'react';
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
   password: yup.string().required().min(4).label('Password'),
 });
-// var options = {
-//   method: 'GET',
-//   url: 'http://sfreshveg.apishub.xyz/smartrestaurent',
-// };api need
-const login_details = [{Email: 'demo@gmail.com', Password: '1234'}];
-function WelcomeImageScreen({navigation}) {
-  // useEffect(() => { done for api but failed due to failed api in postman
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       if (response.status === 200 && response != null) {
-  //         console.log(response.data);
-  //       } else {
-  //         throw new Error('Empty Data');
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // }, []);
 
+function WelcomeImageScreen({navigation}) {
   const Login = Values => {
-    if (Values.email == 'demo@gmail.com' && Values.password == '1234') {
-      navigation.navigate('Login');
-    }
+    var data = new FormData();
+    data.append('email', Values.email);
+    data.append('password', Values.password);
+    var config = {
+      method: 'post',
+      url: 'http://smartres.suretostop.com/loginUser',
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        var loginemail = JSON.stringify(response.data[0].email);
+        var loginpass = JSON.stringify(response.data[0].password);
+        if (loginemail && loginpass) {
+          navigation.navigate('Login');
+        } else {
+          Alert.alert('Login Failed', 'Please Check your login Credentials');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <View style={styles.background}>
@@ -82,7 +82,7 @@ function WelcomeImageScreen({navigation}) {
               Create Account with Email
             </Text>
           </TouchableOpacity>
-          <FbLogin />
+          {/* <FbLogin /> */}
         </AppForm>
       </View>
     </View>

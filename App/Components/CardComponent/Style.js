@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '45%',
   },
-  image: {height: 200, borderRadius: 5, backgroundColor: colors.black},
+  image: {height: 200, borderRadius: 5, backgroundColor: colors.offWhite},
   detailsContainer: {paddingLeft: 20, paddingTop: 20},
   title: {
     marginBottom: 7,

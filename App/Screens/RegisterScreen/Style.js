@@ -5,6 +5,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightGrey,
     height: '100%',
     padding: 10,
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 export default styles;

@@ -7,7 +7,11 @@ function AuthNav(props) {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Welcome" component={WelcomeImageScreen} />
+      <Stack.Screen
+        name="Welcome"
+        component={WelcomeImageScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen
         name="Login"

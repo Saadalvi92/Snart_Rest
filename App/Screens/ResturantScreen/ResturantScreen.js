@@ -1,57 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, FlatList, Text, View} from 'react-native';
 import CardComponent from '../../Components/CardComponent';
-function ResturantScreen({navigation}) {
-  const Res_data = [
-    {
-      id: 1,
-      title: 'Mechdonalds',
-      subtitle: 'Product Name',
-      image: '../../assets/background.jpg',
-    },
-    {
-      id: 2,
-      title: 'KFC',
-      subtitle: 'Product Name',
-      image: '',
-    },
-    {
-      id: 3,
-      title: 'Pepes',
-      subtitle: 'Product Name',
-      image: '',
-    },
-    {
-      id: 4,
-      title: 'Pepes',
-      subtitle: 'Product Name',
-      image: '',
-    },
-    {
-      id: 5,
-      title: 'Pepes',
-      subtitle: 'Product Name',
-      image: '',
-    },
-    {
-      id: 6,
-      title: 'Pepes',
-      subtitle: 'Product Name',
-      image: '',
-    },
-  ];
+import axios from 'axios';
 
+import {useState} from 'react';
+function ResturantScreen({navigation}) {
+  var config = {
+    method: 'get',
+    url: 'http://smartres.suretostop.com/getRestaurents',
+  };
+  // (JSON.stringify(response.data))
+
+  useEffect(() => {
+    axios(config)
+      .then(function (response) {
+        if (response.status === 200 && response != null) {
+          setData(response.data);
+        } else {
+          throw new Error('Empty Data');
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+  const [data, setData] = useState([]);
   return (
     <View>
       <FlatList
-        data={Res_data}
+        data={data}
         numColumns={2}
+        keyExtractor={data.id}
         renderItem={({item}) => (
           <CardComponent
-            title={item.title}
-            subTitle={item.subtitle}
+            title={item.name}
+            subTitle={item.product_name}
             image={item.image}
-            onPress={() => navigation.navigate('Items')}
+            onPress={() => navigation.navigate('Items', item.id)}
           />
         )}
       />

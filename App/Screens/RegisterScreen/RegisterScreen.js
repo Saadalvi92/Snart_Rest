@@ -8,17 +8,44 @@ import {
 } from '../../Components/forms';
 import colors from '../../config/colors';
 import styles from './Style';
+import FormData from 'form-data';
+import axios from 'axios';
+var data = new FormData();
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password'),
 });
 function RegisterScreen(props) {
+  const signup = values => {
+    data.append('email', values.email);
+    data.append('password', values.password);
+    var config = {
+      method: 'post',
+      url: 'http://smartres.suretostop.com/signup',
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data == 1) {
+          alert('SignUp Successfull');
+          navigation.navigate('Login');
+        } else {
+          alert('SignUp unsuccessfull');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Form
         initialValues={{name: '', email: '', password: ''}}
-        onSubmit={values => console.log('pressed')}
+        onSubmit={values => signup(values)}
         validationSchema={validationSchema}>
         <FormField
           autoCorrect={false}

@@ -5,12 +5,12 @@ import Counter from './Counter';
 function CheckOutCard({title, subTitle, Price, image, onPress, qty}) {
   return (
     <View style={styles.card}>
-      <Image style={styles.image} source={image} />
+      <Image style={styles.image} source={{uri: image}} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.subTitle}>{subTitle}</AppText>
         <AppText style={styles.qty}>{qty}</AppText>
-        <AppText style={styles.Price}>= ${Price}</AppText>
+        {/* <Counter /> */}
+        <AppText style={styles.Price}>= £{Price}</AppText>
       </View>
     </View>
   );
