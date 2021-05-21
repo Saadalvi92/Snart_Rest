@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label('Email'),
   password: Yup.string().required().min(4).label('Password'),
 });
-function RegisterScreen(props) {
+function RegisterScreen({navigation}) {
   const signup = values => {
     data.append('email', values.email);
     data.append('password', values.password);
@@ -31,7 +31,7 @@ function RegisterScreen(props) {
         console.log(response.data);
         if (response.data == 1) {
           alert('SignUp Successfull');
-          navigation.navigate('Login');
+          navigation.navigate('Welcome');
         } else {
           alert('SignUp unsuccessfull');
         }
@@ -80,7 +80,10 @@ function RegisterScreen(props) {
         </Text>
         <SubmitButton title="Register" />
       </Form>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Welcome');
+        }}>
         <Text style={{textAlign: 'center', color: colors.mediumGrey}}>
           Already Have an account?Sign in
         </Text>

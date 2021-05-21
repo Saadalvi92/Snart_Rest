@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import AppText from '../../Components/AppText';
 import ListItemSeparotor from '../../Components/ListItemSeperator';
 import colors from '../../config/colors';
-function AccountScreen(props) {
+function AccountScreen({navigation}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.sub_container}>
@@ -21,7 +21,10 @@ function AccountScreen(props) {
       <TouchableOpacity style={styles.sub_container}>
         <AppText>Support</AppText>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Welcome');
+        }}>
         <View style={styles.button}>
           <Text style={styles.Text}>Sign Out</Text>
         </View>

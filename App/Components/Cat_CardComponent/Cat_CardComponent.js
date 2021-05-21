@@ -9,7 +9,7 @@ function Cat_CardComponent({title, subTitle, image, onPress}) {
     <View style={styles.card}>
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
-        <AppText>€ {subTitle} per Item</AppText>
+        <AppText> £ {subTitle} per Item</AppText>
         {/* <Counter style={{marginTop: 10}} /> */}
         <View style={{marginTop: 10}}>
           <Button
