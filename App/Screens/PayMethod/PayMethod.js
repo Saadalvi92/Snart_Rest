@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Button} from 'react-native';
 import * as Yup from 'yup';
 import colors from '../../config/colors';
 import {
@@ -17,11 +17,12 @@ const validationSchema = Yup.object().shape({
   ExpiryYear: Yup.number().label('Expiry Year').required(),
   CardType: Yup.string().label('Card type').required(),
 });
-function PayMethod(props) {
+function PayMethod({navigation, route}) {
+  const Cart = route.params;
   return (
     <View style={styles.container}>
       <ScrollView>
-        <AppText>CARD DETAILS</AppText>
+        <AppText style={{marginLeft: 10}}>CARD DETAILS</AppText>
         <Form
           initialValues={{
             name: '',
@@ -31,7 +32,10 @@ function PayMethod(props) {
             ExpiryYear: '',
             CardType: '',
           }}
-          onSubmit={values => console.log(values)}
+          onSubmit={values => {
+            navigation.navigate('OrderComplete', Cart);
+            console.log(values);
+          }}
           validationSchema={validationSchema}>
           <FormField
             autoCorrect={false}
@@ -46,24 +50,24 @@ function PayMethod(props) {
             maxLength={16}
             placeholder="Card Number"
           />
-          <View>
-            <FormField
-              autoCapitalize="none"
-              autoCorrect={false}
-              name="expiryMonth"
-              placeholder="Expiry Month"
-              maxLength={2}
-              keyboardType="number-pad"
-            />
-            <FormField
-              autoCapitalize="none"
-              autoCorrect={false}
-              name="ExpiryYear"
-              placeholder="Expiry Year"
-              keyboardType="number-pad"
-              maxLength={2}
-            />
-          </View>
+
+          <FormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            name="expiryMonth"
+            placeholder="Expiry Month"
+            maxLength={2}
+            keyboardType="number-pad"
+          />
+          <FormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            name="ExpiryYear"
+            placeholder="Expiry Year"
+            keyboardType="number-pad"
+            maxLength={2}
+          />
+
           <FormField
             autoCapitalize="none"
             autoCorrect={false}
@@ -72,16 +76,25 @@ function PayMethod(props) {
             secureTextEntry
             keyboardType="number-pad"
           />
-
-          <Text style={{textAlign: 'center', color: colors.mediumGrey}}>
-            Your CVV is the last 3 Digits in the signatire strip
+          <View>
+            <Text style={{textAlign: 'center', color: colors.mediumGrey}}>
+              Your CVV is the last 3 Digits in the signatire strip
+            </Text>
+            <Text style={{textAlign: 'center', color: colors.mediumGrey}}>
+              on the back of your card
+            </Text>
+          </View>
+          <Text style={{textAlign: 'center', color: colors.danger}}>
+            Total Ammount= £ {Cart[Cart.length - 2].Total}
           </Text>
-          <Text style={{textAlign: 'center', color: colors.mediumGrey}}>
-            on the back of your card
-          </Text>
-
           <SubmitButton title="Pay" />
         </Form>
+
+        <Button
+          title="Cash on Delivery"
+          onPress={() => {
+            navigation.navigate('OrderComplete', Cart);
+          }}></Button>
       </ScrollView>
     </View>
   );

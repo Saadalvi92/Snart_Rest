@@ -16,6 +16,8 @@ target 'Smart_Resturant' do
 
   pod 'react-native-facebook-login', :path => '../node_modules/react-native-facebook-login'
 
+  pod 'ReactNativeGetLocation', :path => '../node_modules/react-native-get-location'
+
   target 'Smart_ResturantTests' do
     inherit! :complete
     # Pods for testing

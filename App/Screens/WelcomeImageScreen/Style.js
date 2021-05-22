@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightGrey,
   },
   buttonsContainer: {
-    padding: 20,
+    paddingTop: '10%',
     width: '100%',
   },
 
-  logo: {width: 200, height: 200},
+  logo: {width: 200, height: 200, marginTop: '10%'},
   logoContainer: {position: 'relative', alignItems: 'center'},
 });
 export default styles;

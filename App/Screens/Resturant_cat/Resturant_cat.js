@@ -7,7 +7,9 @@ import Cat_CardComponent from '../../Components/Cat_CardComponent';
 import {useState} from 'react';
 import AppButton from '../../Components/AppButton';
 function ResturantScreen({route, navigation}) {
-  const resturant_id = route.params;
+  const resturant_id = route.params.itemId;
+  // console.log(resturant_id);
+  // console.log(route.params);
   var data = new FormData();
   data.append('restaurentId', resturant_id);
   var config = {
@@ -16,7 +18,7 @@ function ResturantScreen({route, navigation}) {
 
     data: data,
   };
-
+  const id = {userid: route.params.userId.userid};
   useEffect(() => {
     axios(config)
       .then(function (response) {
@@ -50,7 +52,7 @@ function ResturantScreen({route, navigation}) {
       <AppButton
         title={'Cart'}
         onPress={() => {
-          navigation.navigate('Checkout', cart);
+          navigation.navigate('Checkout', {cart, id});
         }}
       />
     </View>

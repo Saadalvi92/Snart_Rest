@@ -6,12 +6,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../config/colors';
 const Tab = createBottomTabNavigator();
 
-function Tabnavigator(props) {
+function Tabnavigator({route}) {
+  var userid = route.params;
+  // console.log(userid);
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Resturant"
         component={AppNav}
+        initialParams={{userid}}
         options={{
           headerShown: false,
           tabBarIcon: ({size}) => (
@@ -22,6 +25,7 @@ function Tabnavigator(props) {
       <Tab.Screen
         name="Account"
         component={AccountScreen}
+        initialParams={userid}
         options={{
           tabBarIcon: ({size}) => (
             <Icon name="account" color={colors.mediumGrey} size={size} />

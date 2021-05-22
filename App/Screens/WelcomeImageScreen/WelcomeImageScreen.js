@@ -5,7 +5,7 @@ import axios from 'axios';
 import FormData from 'form-data';
 
 //Import react-native
-import {View, Text, Image, TouchableOpacity, Alert} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Alert, Button} from 'react-native';
 
 //styles Import
 import styles from './Style';
@@ -33,8 +33,9 @@ function WelcomeImageScreen({navigation}) {
       .then(function (response) {
         var loginemail = JSON.stringify(response.data[0].email);
         var loginpass = JSON.stringify(response.data[0].password);
+        var loginid = response.data[0].id;
         if (loginemail && loginpass) {
-          navigation.navigate('Login');
+          navigation.navigate('Login', loginid);
         } else {
           Alert.alert('Login Failed', 'Please Check your login Credentials');
         }
