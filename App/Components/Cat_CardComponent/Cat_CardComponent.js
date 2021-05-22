@@ -18,10 +18,12 @@ function Cat_CardComponent({title, subTitle, image, onPress}) {
             onPress={onPress}></Button>
         </View>
       </View>
-      <Image style={styles.image} source={{uri: image}} />
+      <View style={{flex: 1, justifyContent: 'flex-end'}}></View>
+      <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        <Image style={styles.image} source={{uri: image}} />
+      </View>
     </View>
   );
 }
 
 export default Cat_CardComponent;
-// () => console.log('add to cart', id, rest_id)

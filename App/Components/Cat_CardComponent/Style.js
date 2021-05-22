@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   image: {
     marginTop: 10,
     marginBottom: 10,
-    left: 140,
+
     height: 140,
     width: 100,
     borderRadius: 5,
@@ -20,7 +20,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     resizeMode: 'stretch',
   },
-  detailsContainer: {paddingLeft: 20, paddingTop: 20},
+  detailsContainer: {
+    paddingLeft: '10%',
+    paddingTop: '10%',
+    flex: 1,
+    flexDirection: 'column',
+  },
   title: {
     marginBottom: 7,
     fontSize: 15,
