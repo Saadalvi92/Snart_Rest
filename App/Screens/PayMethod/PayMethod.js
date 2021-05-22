@@ -10,9 +10,8 @@ import {
 import AppText from '../../Components/AppText';
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label('Name'),
-
-  cardNumber: Yup.number().required().positive().label('Card number').max(16),
-  cvc: Yup.number().min(3).max(4).required().label('CVC'),
+  cardNumber: Yup.string().required().label('Card number').max(16).min(16),
+  cvc: Yup.string().min(3).required().label('CVC').max(5),
   expiryMonth: Yup.number().label('Expiry Month').required(),
   ExpiryYear: Yup.number().label('Expiry Year').required(),
   CardType: Yup.string().label('Card type').required(),
@@ -26,15 +25,15 @@ function PayMethod({navigation, route}) {
         <Form
           initialValues={{
             name: '',
-            cardNumber: '',
-            cvc: '',
-            expiryMonth: '',
-            ExpiryYear: '',
-            CardType: '',
+            cardNumber: 0,
+            cvc: 0,
+            expiryMonth: 0,
+            ExpiryYear: 0,
+            CardType: 0,
           }}
           onSubmit={values => {
-            navigation.navigate('OrderComplete', Cart);
             console.log(values);
+            navigation.navigate('OrderComplete', Cart);
           }}
           validationSchema={validationSchema}>
           <FormField
@@ -75,6 +74,7 @@ function PayMethod({navigation, route}) {
             placeholder="CVC"
             secureTextEntry
             keyboardType="number-pad"
+            maxLength={4}
           />
           <View>
             <Text style={{textAlign: 'center', color: colors.mediumGrey}}>

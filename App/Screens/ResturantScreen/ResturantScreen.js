@@ -118,6 +118,7 @@ function ResturantScreen({navigation, route}) {
           backgroundColor: colors.white,
         }}>
         <AppIcon name="map-marker-radius" />
+        <Text>Current Location: {''}</Text>
         <Text>{address}</Text>
       </View>
       <ScrollView>
