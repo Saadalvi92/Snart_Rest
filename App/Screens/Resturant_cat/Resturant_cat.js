@@ -8,8 +8,7 @@ import {useState} from 'react';
 import AppButton from '../../Components/AppButton';
 function ResturantScreen({route, navigation}) {
   const resturant_id = route.params.itemId;
-  // console.log(resturant_id);
-  // console.log(route.params);
+
   var data = new FormData();
   data.append('restaurentId', resturant_id);
   var config = {
