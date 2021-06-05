@@ -4,7 +4,6 @@ import AppButton from '../../Components/AppButton';
 import CheckOutCard from '../../Components/CheckOutCard';
 import AppText from '../../Components/AppText';
 import styles from './Style';
-import {getPixelSizeForLayoutSize} from 'react-native/Libraries/Utilities/PixelRatio';
 
 const Check_data = [
   {title: 'KFC', Subtitle: 'Hot Wing', qty: '1', price: 29, image: ''},
@@ -20,7 +19,6 @@ function CheckOut({navigation, route}) {
 
   const payout = newCart => {
     navigation.navigate('PayMethod', newCart);
-    // console.log(newCart);
   };
   return (
     <ScrollView>
